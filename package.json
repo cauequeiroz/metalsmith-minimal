@@ -1,0 +1,24 @@
+{
+  "name": "metalsmith-minimal",
+  "version": "1.0.0",
+  "description": "A minimal blog crafted with Metalsmith",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "npm install",
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cauequeiroz/metalsmith-minimal.git"
+  },
+  "author": "Caue Queiroz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cauequeiroz/metalsmith-minimal/issues"
+  },
+  "homepage": "https://github.com/cauequeiroz/metalsmith-minimal#readme",
+  "devDependencies": {
+    "metalsmith": "^2.3.0"
+  }
+}

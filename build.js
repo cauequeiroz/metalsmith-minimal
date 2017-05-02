@@ -2,6 +2,9 @@ var metalsmith  = require('metalsmith'),
     markdown    = require('metalsmith-markdown'),
     layouts     = require('metalsmith-layouts'),
     collections = require('metalsmith-collections'),
+    permalinks  = require('metalsmith-permalinks'),
+    watch       = require('metalsmith-watch'),
+    serve       = require('metalsmith-serve'),
     handlebars  = require('handlebars');
 
 metalsmith(__dirname)
@@ -21,6 +24,10 @@ metalsmith(__dirname)
         }
     }))
     .use(markdown())
+    .use(permalinks({
+        relative: false,
+        pattern: ':title'
+    }))
     .use(layouts({
         engine: 'handlebars',
         directory: './layouts',
@@ -29,6 +36,16 @@ metalsmith(__dirname)
         partials: {
             header: 'partials/header',
             footer: 'partials/footer'
+        }
+    }))
+    .use(serve({
+        port: 8081,
+        verbose: true
+    }))
+    .use(watch({
+        paths: {
+            '${source}/**/*': true,
+            'layout/**/*': '**/*'
         }
     }))
     .build(function(err) {

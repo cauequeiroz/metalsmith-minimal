@@ -10,7 +10,7 @@ var metalsmith  = require('metalsmith'),
 metalsmith(__dirname)
     .metadata({
         site: {
-            name: 'Electroniq',
+            name: 'Caue Queiroz',
             description: "Electroniq is astrophysicist (and retro music enthusiast) Tara Himmels' blog."
         }
     })
@@ -38,16 +38,16 @@ metalsmith(__dirname)
             footer: 'partials/footer'
         }
     }))
-    .use(serve({
-        port: 8081,
-        verbose: true
-    }))
-    .use(watch({
-        paths: {
-            '${source}/**/*': true,
-            'layout/**/*': '**/*'
-        }
-    }))
+    // .use(serve({
+    //     port: 8081,
+    //     verbose: true
+    // }))
+    // .use(watch({
+    //     paths: {
+    //         '${source}/**/*': true,
+    //         'layout/**/*': '**/*'
+    //     }
+    // }))
     .build(function(err) {
         console.log(err ? err : '[DEV] Electroniq built!');
     });

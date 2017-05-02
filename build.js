@@ -1,4 +1,8 @@
-var metalsmith = require('metalsmith');
+var metalsmith  = require('metalsmith'),
+    markdown    = require('metalsmith-markdown'),
+    layouts     = require('metalsmith-layouts'),
+    collections = require('metalsmith-collections'),
+    handlebars  = require('handlebars');
 
 metalsmith(__dirname)
     .metadata({
@@ -9,6 +13,20 @@ metalsmith(__dirname)
     })
     .source('./src')
     .destination('./public')
+    .use(collections({
+        articles: {
+            pattern: 'articles/**/*.md',
+            sortBy: 'date',
+            reverse: true
+        }
+    }))
+    .use(markdown())
+    .use(layouts({
+        engine: 'handlebars',
+        directory: './layouts',
+        default: 'article.html',
+        pattern: ["*/*/*html", "*/*html", "*html"]
+    }))
     .build(function(err) {
         console.log(err ? err : '[DEV] Electroniq built!');
     });
